@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct RootView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            WatchlistView()
+                .tabItem {
+                    Label("Watchlist", systemImage: "list.bullet")
+                }
+
+            HoldingsView(context: PersistenceController.shared.container.viewContext)
+                .tabItem {
+                    Label("Holdings", systemImage: "bitcoinsign.circle")
+                }
         }
-        .padding()
     }
 }
